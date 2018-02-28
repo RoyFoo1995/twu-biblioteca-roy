@@ -11,6 +11,9 @@ public class Book {
         this.bookTime = bookTime;
     }
 
+    public Book() {
+    }
+
     public String getBookAuthor() {
         return bookAuthor;
     }
