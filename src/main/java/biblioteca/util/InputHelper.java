@@ -24,7 +24,14 @@ public class InputHelper {
 
 
     public int getNum() {
-        System.out.println("Please input number:");
-        return scanner.nextInt();
+        Console.getInstance().println("Please input number:");
+        int s = scanner.nextInt();
+        scanner.nextLine();
+        return s;
+    }
+
+    public String getString(){
+        Console.getInstance().println("Please input book name to checkout:");
+        return scanner.nextLine();
     }
 }

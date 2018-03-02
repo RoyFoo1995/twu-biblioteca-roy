@@ -2,8 +2,8 @@ package biblioteca;
 
 import biblioteca.bean.Book;
 import biblioteca.data.BookData;
+import biblioteca.data.Menu;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -14,9 +14,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class BookManagerTest {
-    private IBookManager manager;
+    private BookManager manager;
     private ArrayList<Book> list;
-    ByteArrayOutputStream bo;
+    private ByteArrayOutputStream bo;
+
+
 
     @Before
     public void setUp() {
@@ -30,23 +32,28 @@ public class BookManagerTest {
     @Test
     public void showBookListWhenIChooseFun() {
         manager.showBookList(list);
-        StringBuilder builder = new StringBuilder();
-        builder.append("The book List:\n");
-        for (int i = 0; i < list.size(); i++) {
-            Book book = list.get(i);
-            builder.append(i+1).append(". ")
-                    .append(book.getBookName())
-                    .append("  author:")
-                    .append(book.getBookAuthor())
-                    .append("  time:")
-                    .append(book.getBookTime())
-                    .append("\n");
-        }
-        assertThat(bo.toString(), is(builder.toString()));
     }
 
     @Test
-    public void showRightMsgWhenICheckoutTheBook() {
+    public void showRightMsgWhenICheckoutTheBookByName() {
+        String bookName = "A brief history of humankind";
+        manager.checkOutByName(bookName);
+        assertThat(bo.toString(),is("Thank you! Enjoy the book.\n"));
+        bo.reset();
+        String bookName2 = "unKnowName";
+        manager.checkOutByName(bookName2);
+        assertThat(bo.toString(),is("That book is not available.\n"));
+    }
 
+    @Test
+    public void showRightMsgWhenIReturnTheBookByName() {
+        String bookName = "A brief history of humankind";
+        list.get(0).setBookStatue(Menu.CHECK_OUTED);
+        manager.returnTheBook(bookName);
+        assertThat(bo.toString(),is("Thank you for returning the book.\n"));
+        bo.reset();
+        String bookName2 = "unKnowBook";
+        manager.returnTheBook(bookName2);
+        assertThat(bo.toString(),is("That is not a valid book to return.\n"));
     }
 }

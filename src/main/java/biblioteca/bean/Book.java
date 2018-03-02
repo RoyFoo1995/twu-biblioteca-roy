@@ -4,14 +4,24 @@ public class Book {
     private String bookName;
     private String bookAuthor;
     private String bookTime;
+    private int bookStatue;
 
-    public Book(String bookName, String bookAuthor, String bookTime) {
+    public Book(String bookName, String bookAuthor, String bookTime, int bookStatue) {
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.bookTime = bookTime;
+        this.bookStatue = bookStatue;
     }
 
     public Book() {
+    }
+
+    public int getBookStatue() {
+        return bookStatue;
+    }
+
+    public void setBookStatue(int bookStatue) {
+        this.bookStatue = bookStatue;
     }
 
     public String getBookAuthor() {

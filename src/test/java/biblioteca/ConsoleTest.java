@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class ConsoleTest {
-    ByteArrayOutputStream bo;
+    private ByteArrayOutputStream bo;
 
     @Before
     public void setUp() {
@@ -32,4 +32,5 @@ public class ConsoleTest {
         Console.getInstance().print("HelloWorld");
         assertThat(bo.toString(),is("HelloWorld"));
     }
+
 }

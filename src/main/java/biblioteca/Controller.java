@@ -14,21 +14,25 @@ public class Controller {
     private boolean isExit = false;
     private BookManager bookManager;
     private ArrayList<Book> bookList;
+
     /**
      * 程序执行入口
      */
     public void exec() {
-        initData();
         String welcomeMsg = "----Welcome to Biblioteca Application----";
         showWelcomeMsg(welcomeMsg);
         while (true) {
             showMainMenu();
             int i = InputHelper.getInstance().getNum();
             chooseFun(i);
-            if (isExit){
+            if (isExit) {
                 break;
             }
         }
+    }
+
+    Controller() {
+        initData();
     }
 
     private void initData() {
@@ -63,11 +67,17 @@ public class Controller {
         switch (i) {
             case Menu.LIST_BOOK:
                 bookManager.showBookList(bookList);
+                bookManager.checkOutByName(InputHelper.getInstance().getString());
+                break;
+            case Menu.RETURN_BOOK:
+                bookManager.returnTheBook(InputHelper.getInstance().getString());
                 break;
             case Menu.QUIT:
                 quit();
+                break;
             default:
-                Console.getInstance().println("Select a valid option!");//序号选择错误
+                Console.getInstance().println("Select a valid option!");
+                break;//序号选择错误
         }
     }
 
@@ -78,4 +88,6 @@ public class Controller {
         Console.getInstance().print("Quit Success!");
         isExit = true;
     }
+
+
 }

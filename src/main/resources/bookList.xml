@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <books>
     <book>
-        <name>人类简史</name>
-        <author>尤瓦尔·赫拉利</author>
+        <name>A brief history of humankind</name>
+        <author>Yuval Grali</author>
         <time>2014-11</time>
+        <status>1001</status>
     </book>
     <book>
-        <name>万物运转的秘密</name>
-        <author>大卫·麦考利</author>
+        <name>The way things work</name>
+        <author>David Macaulay</author>
         <time>2009-11</time>
+        <status>1001</status>
     </book>
     <book>
-        <name>未来简史</name>
-        <author>尤瓦尔·赫拉利</author>
-        <time>2017-1</time>
+        <name>Homo Deus:A Brief History of Tomorrow</name>
+        <author>Yuval Grali</author>
+        <time>2017-01</time>
+        <status>1001</status>
     </book>
     <book>
-        <name>浪潮之巅</name>
-        <author>吴军</author>
-        <time>2011-8</time>
+        <name>On Top of Tides</name>
+        <author>Jun Wu</author>
+        <time>2011-08</time>
+        <status>1001</status>
     </book>
     <book>
-        <name>杀死一只知更鸟</name>
-        <author>哈珀·李</author>
-        <time>2017-2</time>
+        <name>To Kill a Mockingbird</name>
+        <author>Atticus Finch</author>
+        <time>2017-02</time>
+        <status>1001</status>
     </book>
 </books>
