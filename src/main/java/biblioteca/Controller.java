@@ -66,11 +66,11 @@ public class Controller {
     public void chooseFun(int i) {
         switch (i) {
             case Menu.LIST_BOOK:
-                bookManager.showBookList(bookList);
+                bookManager.showBookList();
                 bookManager.checkOutByName(InputHelper.getInstance().getString());
                 break;
             case Menu.RETURN_BOOK:
-                bookManager.returnTheBook(InputHelper.getInstance().getString());
+                bookManager.returnTheBookByName(InputHelper.getInstance().getString());
                 break;
             case Menu.QUIT:
                 quit();

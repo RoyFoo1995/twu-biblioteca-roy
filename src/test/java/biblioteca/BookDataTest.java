@@ -29,17 +29,23 @@ public class BookDataTest {
         assertThat(bookData.getBookData(), is(bookArrayList));
     }
 
+//    @Test
+//    public void deleteTheBookWhenICallDeleteFunByName() {
+//        String bookName = "A brief history of humankind";
+////        bookData.deleteBookByName(bookName);
+//        Book book2 = null;
+//        for (Book book :
+//                bookArrayList) {
+//            if (book.getBookName().equals(bookName)) {
+//                book2 = book;
+//            }
+//        }
+//        assertThat(BookData.getInstance().getBookData(),hasItem(book2));
+//    }
+
     @Test
-    public void deleteTheBookWhenICallDeleteFunByName() {
+    public void getTheBookClassByNameWhenICallFun() {
         String bookName = "A brief history of humankind";
-        bookData.deleteBookByName(bookName);
-        Book book2 = null;
-        for (Book book :
-                bookArrayList) {
-            if (book.getBookName().equals(bookName)) {
-                book2 = book;
-            }
-        }
-        assertThat(BookData.getInstance().getBookData(),hasItem(book2));
+        assertThat(bookArrayList.get(0), is(bookData.getTheBookClassByName(bookName)));
     }
 }

@@ -31,7 +31,7 @@ public class BookManagerTest {
 
     @Test
     public void showBookListWhenIChooseFun() {
-        manager.showBookList(list);
+        manager.showBookList();
     }
 
     @Test
@@ -49,11 +49,11 @@ public class BookManagerTest {
     public void showRightMsgWhenIReturnTheBookByName() {
         String bookName = "A brief history of humankind";
         list.get(0).setBookStatue(Menu.CHECK_OUTED);
-        manager.returnTheBook(bookName);
+        manager.returnTheBookByName(bookName);
         assertThat(bo.toString(),is("Thank you for returning the book.\n"));
         bo.reset();
         String bookName2 = "unKnowBook";
-        manager.returnTheBook(bookName2);
+        manager.returnTheBookByName(bookName2);
         assertThat(bo.toString(),is("That is not a valid book to return.\n"));
     }
 }

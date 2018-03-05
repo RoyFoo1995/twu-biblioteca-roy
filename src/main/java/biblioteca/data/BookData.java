@@ -7,7 +7,6 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 
 public class BookData {
@@ -54,34 +53,43 @@ public class BookData {
         return bookArrayList;
     }
 
-    public void deleteBookByName(String bookName) {
-        for (Book book : bookArrayList) {
-            if (book.getBookName().equals(bookName)) {
-                book.setBookStatue(Menu.CHECK_OUTED);
-                changeBookStatusFromXml(bookName);
-            }
-        }
-    }
+//    public void deleteBookByName(String bookName) {
+//        for (Book book : bookArrayList) {
+//            if (book.getBookName().equals(bookName)) {
+//                book.setBookStatue(Menu.CHECK_OUTED);
+//                changeBookStatusFromXml(bookName);
+//            }
+//        }
+//    }
 
-    private void changeBookStatusFromXml(String bookName) {
-        SAXReader reader = new SAXReader();
-        Document doc = null;
-        try {
-            doc = reader.read(BookData.class.getResource("/bookList.xml"));
-            Element root = doc.getRootElement();
-            Element foo;
-            for (Iterator i = root.elementIterator("book"); i.hasNext(); ) {
-                foo = (Element) i.next();
-                String bookNameToDelete = foo.elementText("name");
-                int bookStatus = Integer.valueOf(foo.elementText("status"));
-//                System.out.println(foo.element("status"));
-                if (bookNameToDelete.equals(bookName) && bookStatus == (Menu.CAN_READ)) {
-                    Element element = foo.element("status");
-//                    element.getText("status");
-                }
+//    private void changeBookStatusFromXml(String bookName) {
+//        SAXReader reader = new SAXReader();
+//        Document doc = null;
+//        try {
+//            doc = reader.read(BookData.class.getResource("/bookList.xml"));
+//            Element root = doc.getRootElement();
+//            Element foo;
+//            for (Iterator i = root.elementIterator("book"); i.hasNext(); ) {
+//                foo = (Element) i.next();
+//                String bookNameToDelete = foo.elementText("name");
+//                int bookStatus = Integer.valueOf(foo.elementText("status"));
+////                System.out.println(foo.element("status"));
+//                if (bookNameToDelete.equals(bookName) && bookStatus == (Menu.CAN_READ)) {
+//                    Element element = foo.element("status");
+////                    element.getText("status");
+//                }
+//            }
+//        } catch (DocumentException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public Book getTheBookClassByName(String bookName) {
+        for (Book book:bookArrayList){
+            if (book.getBookName().equals(bookName)) {
+                return book;
             }
-        } catch (DocumentException e) {
-            e.printStackTrace();
         }
+        return null;
     }
 }

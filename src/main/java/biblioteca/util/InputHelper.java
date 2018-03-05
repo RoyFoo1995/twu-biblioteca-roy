@@ -25,9 +25,7 @@ public class InputHelper {
 
     public int getNum() {
         Console.getInstance().println("Please input number:");
-        int s = scanner.nextInt();
-        scanner.nextLine();
-        return s;
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public String getString(){
