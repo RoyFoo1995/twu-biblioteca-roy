@@ -1,8 +1,7 @@
-package biblioteca.data;
+package biblioteca.model;
 
-import biblioteca.bean.Book;
+import biblioteca.entity.Book;
 import biblioteca.util.XMLUtil;
-import org.dom4j.Attribute;
 import org.dom4j.Element;
 import java.util.ArrayList;
 import java.util.Iterator;

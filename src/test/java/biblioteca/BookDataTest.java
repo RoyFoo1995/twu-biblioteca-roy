@@ -1,7 +1,7 @@
 package biblioteca;
 
-import biblioteca.bean.Book;
-import biblioteca.data.BookData;
+import biblioteca.entity.Book;
+import biblioteca.model.BookData;
 import org.junit.Before;
 import org.junit.Test;
 

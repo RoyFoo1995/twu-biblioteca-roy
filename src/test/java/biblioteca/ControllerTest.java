@@ -1,6 +1,6 @@
 package biblioteca;
 
-import biblioteca.bean.Menu;
+import biblioteca.entity.Menu;
 import org.junit.Before;
 import org.junit.Test;
 

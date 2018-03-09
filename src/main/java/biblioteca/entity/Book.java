@@ -1,4 +1,4 @@
-package biblioteca.bean;
+package biblioteca.entity;
 
 public class Book {
     private String bookName;

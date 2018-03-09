@@ -1,11 +1,11 @@
 package biblioteca;
 
 
-import biblioteca.bean.Book;
-import biblioteca.bean.Movie;
-import biblioteca.data.BookData;
-import biblioteca.bean.Menu;
-import biblioteca.data.MovieData;
+import biblioteca.entity.Book;
+import biblioteca.entity.Movie;
+import biblioteca.model.BookData;
+import biblioteca.entity.Menu;
+import biblioteca.model.MovieData;
 import biblioteca.manager.BookManager;
 import biblioteca.manager.MovieManager;
 import biblioteca.util.Console;
@@ -20,6 +20,10 @@ public class Controller {
     private MovieManager movieManager;
     private ArrayList<Book> bookList;
     private ArrayList<Movie> movieList;
+
+    Controller() {
+        initData();
+    }
 
     /**
      * 程序执行入口
@@ -38,10 +42,9 @@ public class Controller {
         }
     }
 
-    Controller() {
-        initData();
-    }
-
+    /**
+     * 初始化相关数据
+     */
     private void initData() {
         bookList = BookData.getInstance().getData();
         movieList = MovieData.getInstance().getData();
@@ -91,6 +94,13 @@ public class Controller {
             case Menu.LIST_MOVIES:
                 movieManager.showList();
                 InputHelper.getInstance().getString("please input anything to continue:");
+                break;
+            case Menu.CHECKOUT_MOVIE:
+                movieManager.showList();
+                movieManager.checkOutByName(InputHelper.getInstance().getString("Please input movie name to checkout:"));
+                break;
+            case Menu.RETURN_MOVIE:
+                movieManager.returnByName(InputHelper.getInstance().getString("Please input movie name to return:"));
                 break;
             default:
                 Console.getInstance().println("Select a valid option!");

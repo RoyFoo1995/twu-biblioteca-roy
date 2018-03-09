@@ -1,8 +1,8 @@
 package biblioteca.manager;
 
-import biblioteca.bean.Book;
-import biblioteca.data.BookData;
-import biblioteca.bean.Menu;
+import biblioteca.entity.Book;
+import biblioteca.model.BookData;
+import biblioteca.entity.Menu;
 import biblioteca.util.Console;
 
 import java.util.ArrayList;

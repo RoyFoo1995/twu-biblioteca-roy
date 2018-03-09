@@ -1,7 +1,8 @@
 package biblioteca.manager;
 
-import biblioteca.bean.Menu;
-import biblioteca.bean.Movie;
+import biblioteca.entity.Menu;
+import biblioteca.entity.Movie;
+import biblioteca.model.MovieData;
 import biblioteca.util.Console;
 
 import java.util.ArrayList;
@@ -31,12 +32,24 @@ public class MovieManager implements IManager {
     }
 
     @Override
-    public void checkOutByName(String bookName) {
-
+    public void checkOutByName(String name) {
+        Movie movie = MovieData.getInstance().getTheClassByName(name);
+        if (movie != null && movie.getStatus() == Menu.CAN_READ) {
+            movie.setStatus(Menu.CHECK_OUTED);
+            Console.getInstance().println("Thank you! Enjoy the movie.");
+            return;
+        }
+        Console.getInstance().println("That movie is not available.");
     }
 
     @Override
-    public void returnByName(String bookName) {
-
+    public void returnByName(String name) {
+        Movie movie = MovieData.getInstance().getTheClassByName(name);
+        if (movie != null && movie.getStatus() == Menu.CHECK_OUTED) {
+            movie.setStatus(Menu.CAN_READ);
+            Console.getInstance().println("Thank you for returning the movie.");
+            return;
+        }
+        Console.getInstance().println("That is not a valid movie to return.");
     }
 }

@@ -1,7 +1,6 @@
-package biblioteca.data;
+package biblioteca.model;
 
-import biblioteca.bean.Book;
-import biblioteca.bean.Movie;
+import biblioteca.entity.Movie;
 import biblioteca.util.XMLUtil;
 import org.dom4j.Element;
 

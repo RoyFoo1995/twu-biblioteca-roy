@@ -4,7 +4,7 @@ package biblioteca.manager;
 public interface IManager {
     void showList();
 
-    void checkOutByName(String bookName);
+    void checkOutByName(String name);
 
-    void returnByName(String bookName);
+    void returnByName(String name);
 }
