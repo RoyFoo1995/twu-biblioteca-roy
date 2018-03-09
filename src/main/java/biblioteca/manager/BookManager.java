@@ -1,20 +1,26 @@
-package biblioteca;
+package biblioteca.manager;
 
 import biblioteca.bean.Book;
 import biblioteca.data.BookData;
-import biblioteca.data.Menu;
+import biblioteca.bean.Menu;
 import biblioteca.util.Console;
 
 import java.util.ArrayList;
 
-public class BookManager implements IBookManager {
+public class BookManager implements IManager {
+
+    private ArrayList<Book> books;
+
+    public BookManager(ArrayList<Book> books) {
+        this.books = books;
+    }
+
     @Override
-    public void showBookList() {
+    public void showList() {
         Console.getInstance().println("The book List:");
         int index = 0;
-        ArrayList<Book> list = BookData.getInstance().getBookData();
-        for (int i = 1; i <= list.size(); i++) {
-            Book book = list.get(i - 1);
+        for (int i = 1; i <= books.size(); i++) {
+            Book book = books.get(i - 1);
             if (book.getBookStatue() == Menu.CHECK_OUTED) {
                 index++;
                 continue;
@@ -27,10 +33,10 @@ public class BookManager implements IBookManager {
 
     @Override
     public void checkOutByName(String bookName) {
-        Book book = BookData.getInstance().getTheBookClassByName(bookName);
+        Book book = BookData.getInstance().getTheClassByName(bookName);
         if (book != null && book.getBookStatue() == Menu.CAN_READ) {
-//            BookData.getInstance().deleteBookByName(bookName);
             book.setBookStatue(Menu.CHECK_OUTED);
+//            BookData.getInstance().changeBookStatusFromXml(bookName,Menu.CHECK_OUTED);
             Console.getInstance().println("Thank you! Enjoy the book.");
             return;
         }
@@ -38,10 +44,11 @@ public class BookManager implements IBookManager {
     }
 
     @Override
-    public void returnTheBookByName(String bookName) {
-        Book book = BookData.getInstance().getTheBookClassByName(bookName);
+    public void returnByName(String bookName) {
+        Book book = BookData.getInstance().getTheClassByName(bookName);
         if (book != null && book.getBookStatue() == Menu.CHECK_OUTED) {
             book.setBookStatue(Menu.CAN_READ);
+//            BookData.getInstance().changeBookStatusFromXml(bookName,Menu.CAN_READ);
             Console.getInstance().println("Thank you for returning the book.");
             return;
         }

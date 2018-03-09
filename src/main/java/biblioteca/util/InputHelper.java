@@ -23,13 +23,13 @@ public class InputHelper {
     }
 
 
-    public int getNum() {
-        Console.getInstance().println("Please input number:");
+    public int getNum(String msg) {
+        Console.getInstance().println(msg);
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public String getString(){
-        Console.getInstance().println("Please input book name to checkout:");
+    public String getString(String msg){
+        Console.getInstance().println(msg);
         return scanner.nextLine();
     }
 }

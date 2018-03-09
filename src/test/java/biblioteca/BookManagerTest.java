@@ -2,7 +2,9 @@ package biblioteca;
 
 import biblioteca.bean.Book;
 import biblioteca.data.BookData;
-import biblioteca.data.Menu;
+import biblioteca.bean.Menu;
+import biblioteca.manager.BookManager;
+import biblioteca.manager.IManager;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +16,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class BookManagerTest {
-    private BookManager manager;
+    private IManager manager;
     private ArrayList<Book> list;
     private ByteArrayOutputStream bo;
 
@@ -22,16 +24,16 @@ public class BookManagerTest {
 
     @Before
     public void setUp() {
-        manager = new BookManager();
+        list = BookData.getInstance().getData();
+        manager = new BookManager(list);
         bo = new ByteArrayOutputStream();
-        list = BookData.getInstance().getBookData();
         System.setOut(new PrintStream(bo));
     }
 
 
     @Test
     public void showBookListWhenIChooseFun() {
-        manager.showBookList();
+        manager.showList();
     }
 
     @Test
@@ -49,11 +51,11 @@ public class BookManagerTest {
     public void showRightMsgWhenIReturnTheBookByName() {
         String bookName = "A brief history of humankind";
         list.get(0).setBookStatue(Menu.CHECK_OUTED);
-        manager.returnTheBookByName(bookName);
+        manager.returnByName(bookName);
         assertThat(bo.toString(),is("Thank you for returning the book.\n"));
         bo.reset();
         String bookName2 = "unKnowBook";
-        manager.returnTheBookByName(bookName2);
+        manager.returnByName(bookName2);
         assertThat(bo.toString(),is("That is not a valid book to return.\n"));
     }
 }

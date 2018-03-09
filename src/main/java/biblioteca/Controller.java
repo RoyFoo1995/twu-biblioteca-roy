@@ -2,8 +2,12 @@ package biblioteca;
 
 
 import biblioteca.bean.Book;
+import biblioteca.bean.Movie;
 import biblioteca.data.BookData;
-import biblioteca.data.Menu;
+import biblioteca.bean.Menu;
+import biblioteca.data.MovieData;
+import biblioteca.manager.BookManager;
+import biblioteca.manager.MovieManager;
 import biblioteca.util.Console;
 import biblioteca.util.InputHelper;
 
@@ -13,7 +17,9 @@ public class Controller {
 
     private boolean isExit = false;
     private BookManager bookManager;
+    private MovieManager movieManager;
     private ArrayList<Book> bookList;
+    private ArrayList<Movie> movieList;
 
     /**
      * 程序执行入口
@@ -22,8 +28,9 @@ public class Controller {
         String welcomeMsg = "----Welcome to Biblioteca Application----";
         showWelcomeMsg(welcomeMsg);
         while (true) {
+            Console.getInstance().println("----Main---Menu----");
             showMainMenu();
-            int i = InputHelper.getInstance().getNum();
+            int i = InputHelper.getInstance().getNum("Please input option number:");
             chooseFun(i);
             if (isExit) {
                 break;
@@ -36,8 +43,10 @@ public class Controller {
     }
 
     private void initData() {
-        bookManager = new BookManager();
-        bookList = BookData.getInstance().getBookData();
+        bookList = BookData.getInstance().getData();
+        movieList = MovieData.getInstance().getData();
+        bookManager = new BookManager(bookList);
+        movieManager = new MovieManager(movieList);
     }
 
     /**
@@ -66,14 +75,22 @@ public class Controller {
     public void chooseFun(int i) {
         switch (i) {
             case Menu.LIST_BOOK:
-                bookManager.showBookList();
-                bookManager.checkOutByName(InputHelper.getInstance().getString());
+                bookManager.showList();
+                InputHelper.getInstance().getString("please input anything to continue:");
+                break;
+            case Menu.CHECKOUT_BOOK:
+                bookManager.showList();
+                bookManager.checkOutByName(InputHelper.getInstance().getString("Please input book name to checkout:"));
                 break;
             case Menu.RETURN_BOOK:
-                bookManager.returnTheBookByName(InputHelper.getInstance().getString());
+                bookManager.returnByName(InputHelper.getInstance().getString("Please input book name to return:"));
                 break;
             case Menu.QUIT:
                 quit();
+                break;
+            case Menu.LIST_MOVIES:
+                movieManager.showList();
+                InputHelper.getInstance().getString("please input anything to continue:");
                 break;
             default:
                 Console.getInstance().println("Select a valid option!");

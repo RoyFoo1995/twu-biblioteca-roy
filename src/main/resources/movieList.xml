@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<movies>
+    <movie>
+       <name>The Shape of Water</name>
+        <year>2017</year>
+        <director>Guillermo del Toro</director>
+        <rating>7.4</rating>
+        <status>1001</status>
+    </movie>
+    <movie>
+        <name>Lady Bird</name>
+        <year>2017</year>
+        <director>Greta Gerwig</director>
+        <rating>8.0</rating>
+        <status>1001</status>
+    </movie>
+    <movie>
+        <name>Darkest Hour</name>
+        <year>2017</year>
+        <director>Anthony McCarten</director>
+        <rating>8.6</rating>
+        <status>1001</status>
+    </movie>
+    <movie>
+        <name>The Shawshank Redemption</name>
+        <year>1994</year>
+        <director>Frank Darabont</director>
+        <rating>9.6</rating>
+        <status>1001</status>
+    </movie>
+</movies>

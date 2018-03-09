@@ -19,14 +19,13 @@ public class BookDataTest {
     @Before
     public void setUp() {
         bookData = BookData.getInstance();
-        bookArrayList = bookData.getBookData();
+        bookArrayList = bookData.getData();
     }
 
 
     @Test
     public void returnTheSameListWhenICallGetBookData() {
-        bookArrayList = bookData.getBookData();
-        assertThat(bookData.getBookData(), is(bookArrayList));
+        assertThat(bookData.getData(), is(bookArrayList));
     }
 
 //    @Test
@@ -46,6 +45,6 @@ public class BookDataTest {
     @Test
     public void getTheBookClassByNameWhenICallFun() {
         String bookName = "A brief history of humankind";
-        assertThat(bookArrayList.get(0), is(bookData.getTheBookClassByName(bookName)));
+        assertThat(bookArrayList.get(0), is(bookData.getTheClassByName(bookName)));
     }
 }

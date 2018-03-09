@@ -1,15 +1,13 @@
 package biblioteca.data;
 
 import biblioteca.bean.Book;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
+import biblioteca.util.XMLUtil;
+import org.dom4j.Attribute;
 import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class BookData {
+public class BookData implements IData {
     private ArrayList<Book> bookArrayList;
     private static BookData bookData;
 
@@ -21,19 +19,20 @@ public class BookData {
             synchronized (BookData.class) {
                 if (bookData == null) {
                     bookData = new BookData();
-                    bookData.generateBookData();
+                    bookData.generateData();
                 }
             }
         }
         return bookData;
     }
 
-    private void generateBookData() {
+    /**
+     * 生成Book列表
+     */
+    public void generateData() {
         try {
             bookArrayList = new ArrayList<>();
-            SAXReader reader = new SAXReader();
-            Document doc = reader.read(BookData.class.getResource("/bookList.xml"));
-            Element root = doc.getRootElement();
+            Element root = XMLUtil.getRootElement("/bookList.xml");
             Element foo;
             for (Iterator i = root.elementIterator("book"); i.hasNext(); ) {
                 foo = (Element) i.next();
@@ -49,44 +48,41 @@ public class BookData {
         }
     }
 
-    public ArrayList<Book> getBookData() {
+
+    /**
+     * 获取当前book列表
+     *
+     * @return
+     */
+    public ArrayList<Book> getData() {
         return bookArrayList;
     }
 
-//    public void deleteBookByName(String bookName) {
-//        for (Book book : bookArrayList) {
-//            if (book.getBookName().equals(bookName)) {
-//                book.setBookStatue(Menu.CHECK_OUTED);
-//                changeBookStatusFromXml(bookName);
-//            }
-//        }
-//    }
+    public void changeBookStatusFromXml(String bookName, int status) {
+        Element root = XMLUtil.getRootElement("/bookList.xml");
+        Element foo;
+        for (Iterator i = root.elementIterator("book"); i.hasNext(); ) {
+            foo = (Element) i.next();
+            String bookNameToDelete = foo.elementText("name");
+            int bookStatus = Integer.valueOf(foo.elementText("status"));
+            if (bookNameToDelete.equals(bookName) && bookStatus != status) {
+                Element test = foo.element("status");
+                test.setText(String.valueOf(status));
+            }
+        }
 
-//    private void changeBookStatusFromXml(String bookName) {
-//        SAXReader reader = new SAXReader();
-//        Document doc = null;
-//        try {
-//            doc = reader.read(BookData.class.getResource("/bookList.xml"));
-//            Element root = doc.getRootElement();
-//            Element foo;
-//            for (Iterator i = root.elementIterator("book"); i.hasNext(); ) {
-//                foo = (Element) i.next();
-//                String bookNameToDelete = foo.elementText("name");
-//                int bookStatus = Integer.valueOf(foo.elementText("status"));
-////                System.out.println(foo.element("status"));
-//                if (bookNameToDelete.equals(bookName) && bookStatus == (Menu.CAN_READ)) {
-//                    Element element = foo.element("status");
-////                    element.getText("status");
-//                }
-//            }
-//        } catch (DocumentException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    }
 
-    public Book getTheBookClassByName(String bookName) {
-        for (Book book:bookArrayList){
-            if (book.getBookName().equals(bookName)) {
+
+    /**
+     * 通过书名获取对应图书
+     *
+     * @param name
+     * @return
+     */
+    public Book getTheClassByName(String name) {
+        for (Book book : bookArrayList) {
+            if (book.getBookName().equals(name)) {
                 return book;
             }
         }
