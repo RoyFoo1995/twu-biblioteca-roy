@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<users>
+    <user>
+        <number>001-0001</number>
+        <password>123</password>
+        <name>Roy</name>
+        <email>292701927@qq.com</email>
+        <phone>18180431019</phone>
+    </user>
+    <user>
+        <number>001-0002</number>
+        <password>321</password>
+        <name>Betty</name>
+        <email>vanvan@gamil.com</email>
+        <phone>18178761231</phone>
+    </user>
+    <user>
+        <number>002-0001</number>
+        <password>456</password>
+        <name>Tom</name>
+        <email>tom@gmail.com</email>
+        <phone>18112315678</phone>
+    </user>
+    <user>
+        <number>002-0002</number>
+        <password>654</password>
+        <name>Jack</name>
+        <email>jack@gmail.com</email>
+        <phone>13146769898</phone>
+    </user>
+</users>

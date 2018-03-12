@@ -3,6 +3,7 @@ package biblioteca;
 
 import biblioteca.entity.Book;
 import biblioteca.entity.Movie;
+import biblioteca.manager.UserManager;
 import biblioteca.model.BookData;
 import biblioteca.entity.Menu;
 import biblioteca.model.MovieData;
@@ -25,10 +26,20 @@ public class Controller {
         initData();
     }
 
+    public void login(){
+        Console.getInstance().println("Please sign in:");
+        String number = InputHelper.getInstance().getString("Input your library number:");
+        String password = InputHelper.getInstance().getString("Input your password:");
+        if (UserManager.login(number,password))
+            exec();
+        else
+            login();
+    }
+
     /**
      * 程序执行入口
      */
-    public void exec() {
+    private void exec() {
         String welcomeMsg = "----Welcome to Biblioteca Application----";
         showWelcomeMsg(welcomeMsg);
         while (true) {
@@ -101,6 +112,9 @@ public class Controller {
                 break;
             case Menu.RETURN_MOVIE:
                 movieManager.returnByName(InputHelper.getInstance().getString("Please input movie name to return:"));
+                break;
+            case Menu.USER_INFOMATION:
+                UserManager.checkOutUserInfo();
                 break;
             default:
                 Console.getInstance().println("Select a valid option!");
