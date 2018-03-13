@@ -25,7 +25,7 @@ public class BookManagerTest {
     @Before
     public void setUp() {
         list = BookData.getInstance().getData();
-        manager = new BookManager(list);
+        manager = new BookManager();
         bo = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bo));
     }

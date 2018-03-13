@@ -23,7 +23,7 @@ public class MovieManagerTest {
     @Before
     public void setUp(){
         list = MovieData.getInstance().getData();
-        movieManager = new MovieManager(list);
+        movieManager = new MovieManager();
         bo = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bo));
     }
