@@ -6,6 +6,11 @@ import org.dom4j.io.SAXReader;
 
 public class XMLUtil {
 
+    /**
+     * 获取根Element
+     * @param url 需要打开的文件url路劲
+     * @return Element
+     */
     public static org.dom4j.Element getRootElement(String url) {
         SAXReader reader = new SAXReader();
         Document doc = null;

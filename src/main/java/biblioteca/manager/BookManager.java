@@ -11,8 +11,8 @@ public class BookManager implements IManager {
 
     private ArrayList<Book> books;
 
-    public BookManager(ArrayList<Book> books) {
-        this.books = books;
+    public BookManager() {
+        this.books = BookData.getInstance().getData();
     }
 
     @Override

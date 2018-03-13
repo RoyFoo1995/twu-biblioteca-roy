@@ -11,8 +11,8 @@ public class MovieManager implements IManager {
 
     private ArrayList<Movie> movies;
 
-    public MovieManager(ArrayList<Movie> movies) {
-        this.movies = movies;
+    public MovieManager() {
+        this.movies = MovieData.getInstance().getData();
     }
 
     @Override

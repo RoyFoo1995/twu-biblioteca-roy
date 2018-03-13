@@ -12,7 +12,7 @@ public class UserManager {
         User user = UserData.getInstance().getTheClassByName(number);
         if (user != null && user.getPassword().equals(password)) {
             Console.getInstance().println("Login Success!");
-            currentUser = user;
+            currentUser = user;//保存当前用户实例
             return true;
         }
         Console.getInstance().println("Login Fail!");
@@ -20,6 +20,7 @@ public class UserManager {
     }
 
     public static void checkOutUserInfo(){
+        //打印当前用户信息
         String msg = String.format("name:%-20s email:%-20s phone:%-10s",
                 currentUser.getName(),currentUser.getEmail(),currentUser.getPhone());
         Console.getInstance().println(msg);

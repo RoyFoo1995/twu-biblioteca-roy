@@ -1,36 +1,31 @@
 package biblioteca;
 
 
-import biblioteca.entity.Book;
-import biblioteca.entity.Movie;
-import biblioteca.manager.UserManager;
-import biblioteca.model.BookData;
 import biblioteca.entity.Menu;
-import biblioteca.model.MovieData;
 import biblioteca.manager.BookManager;
 import biblioteca.manager.MovieManager;
+import biblioteca.manager.UserManager;
 import biblioteca.util.Console;
 import biblioteca.util.InputHelper;
 
-import java.util.ArrayList;
-
+/**
+ * 项目控制类
+ */
 public class Controller {
 
     private boolean isExit = false;
     private BookManager bookManager;
     private MovieManager movieManager;
-    private ArrayList<Book> bookList;
-    private ArrayList<Movie> movieList;
 
     Controller() {
         initData();
     }
 
-    public void login(){
+    public void login() {
         Console.getInstance().println("Please sign in:");
         String number = InputHelper.getInstance().getString("Input your library number:");
         String password = InputHelper.getInstance().getString("Input your password:");
-        if (UserManager.login(number,password))
+        if (UserManager.login(number, password))
             exec();
         else
             login();
@@ -47,9 +42,8 @@ public class Controller {
             showMainMenu();
             int i = InputHelper.getInstance().getNum("Please input option number:");
             chooseFun(i);
-            if (isExit) {
+            if (isExit)
                 break;
-            }
         }
     }
 
@@ -57,10 +51,8 @@ public class Controller {
      * 初始化相关数据
      */
     private void initData() {
-        bookList = BookData.getInstance().getData();
-        movieList = MovieData.getInstance().getData();
-        bookManager = new BookManager(bookList);
-        movieManager = new MovieManager(movieList);
+        bookManager = new BookManager();
+        movieManager = new MovieManager();
     }
 
     /**
@@ -86,7 +78,7 @@ public class Controller {
      *
      * @param i 用户输入序号
      */
-    public void chooseFun(int i) {
+    private void chooseFun(int i) {
         switch (i) {
             case Menu.LIST_BOOK:
                 bookManager.showList();
@@ -113,7 +105,7 @@ public class Controller {
             case Menu.RETURN_MOVIE:
                 movieManager.returnByName(InputHelper.getInstance().getString("Please input movie name to return:"));
                 break;
-            case Menu.USER_INFOMATION:
+            case Menu.USER_INFORMATION:
                 UserManager.checkOutUserInfo();
                 break;
             default:
