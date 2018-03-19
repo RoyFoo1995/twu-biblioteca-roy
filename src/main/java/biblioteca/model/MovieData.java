@@ -34,7 +34,7 @@ public class MovieData implements IData<Movie> {
             Element root = XMLUtil.getRootElement("/movieList.xml");
             Element foo;
             for (Iterator i = root.elementIterator("movie"); i.hasNext(); ) {
-                foo = (Element) i.next();
+                foo = (Element) i.next();//todo 考虑用反射
                 String name = foo.elementText("name");
                 String director = foo.elementText("director");
                 String year = foo.elementText("year");

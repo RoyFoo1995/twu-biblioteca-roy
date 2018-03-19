@@ -36,7 +36,7 @@ public class BookManagerTest {
         manager.showList();
     }
 
-    @Test
+    @Test //TODO 同理
     public void showRightMsgWhenICheckoutTheBookByName() {
         String bookName = "A brief history of humankind";
         manager.checkOutByName(bookName);
@@ -47,7 +47,7 @@ public class BookManagerTest {
         assertThat(bo.toString(),is("That book is not available.\n"));
     }
 
-    @Test
+    @Test //todo 分开写测试用例 下面是两个分别的case：还书成功 和 还书失败
     public void showRightMsgWhenIReturnTheBookByName() {
         String bookName = "A brief history of humankind";
         list.get(0).setBookStatue(Menu.CHECK_OUTED);
