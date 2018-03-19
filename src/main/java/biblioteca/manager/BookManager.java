@@ -7,6 +7,7 @@ import biblioteca.util.Console;
 
 import java.util.ArrayList;
 
+//todo 和MovieManager 重复代码太多 考虑用泛型抽个抽象类
 public class BookManager implements IManager {
 
     private ArrayList<Book> books;

@@ -78,8 +78,8 @@ public class Controller {
      *
      * @param i 用户输入序号
      */
-    private void chooseFun(int i) {
-        switch (i) {
+    private void chooseFun(int i) {//TODO 变量命名？不需要那么的注释，尽量用命名来代替
+        switch (i) { //todo 用switch好还是利用多态？
             case Menu.LIST_BOOK:
                 bookManager.showList();
                 InputHelper.getInstance().getString("please input anything to continue:");
@@ -109,7 +109,7 @@ public class Controller {
                 UserManager.checkOutUserInfo();
                 break;
             default:
-                Console.getInstance().println("Select a valid option!");
+                Console.getInstance().println("Select a valid option!"); //todo 会不会有bug? 尝试输入非数字
                 break;//序号选择错误
         }
     }
